@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="BU MET CS601 - Assignment 4">
+    <meta name="author" content="Bin Xu">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue: show/hide</title>
+
+    <!-- This is a development version of Vue.js! -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+    <!-- import stylesheet -->
+    <link rel="stylesheet" href="styles.css" />
+
+    <!-- Google fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+
+    <style>
+        body {
+            padding: 20px;
+            text-align:center;
+            width: 75%;
+            margin-left: auto;
+            margin-right: auto;
+            color: rgb(255, 102, 0);
+            font-family: arial,serif;
+            background: lightblue url("img_5.png");
+        }
+        img {
+            width: 28%;
+            max-width: 100%;
+            height: auto;
+            width: auto\9;
+            border: 8px solid whitesmoke;
+            border-radius: 10px;
+            background-color: #e1e1e1;
+
+        }
+        button {
+            border-radius:50%;
+            border: 4px solid rgb(255, 102, 0);
+            background-color: #e1e1e1;
+            height:50px;
+            width:50px;
+            padding: 0;
+            outline: none;
+            transition: all 1.2s ease-in;
+        }
+        .input {
+            font-family: sans-serif;
+            border: 1px solid #eee;
+            border-radius: 2px;
+            padding: 20px 30px;
+            margin-top: 1em;
+            margin-bottom: 40px;
+            user-select: none;
+            overflow-x: auto;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!--    &lt;!&ndash; OnClick &ndash;&gt;-->
+<!--    <div id="app_onclick" class="experiment-block">-->
+<!--        <span>{{ message }}</span>-->
+<!--        <button v-on:click="randomGenerate">Click me</button>-->
+<!--    </div>-->
+
+<!--    <script>-->
+<!--        new Vue({-->
+<!--            el: "#app_onclick",-->
+<!--            data: {-->
+<!--                message: "Click me (random number generate)",-->
+<!--            },-->
+<!--            methods: {-->
+<!--                randomGenerate() {-->
+<!--                    this.message = Math.random()-->
+<!--                },-->
+<!--            },-->
+<!--        })-->
+<!--    </script>-->
+
+<!--    <div id="app">-->
+<!--        <h2>Course Name</h2>-->
+<!--        <span>{{courseName}}</span>-->
+<!--    </div>-->
+
+<!--    <script>-->
+<!--        var app = new Vue({-->
+<!--            el: '#app',-->
+<!--            data: {-->
+<!--                courseName: 'CS601: Web Application Development'-->
+<!--            }-->
+<!--        })-->
+<!--    </script>-->
+
+<!--    <div id="demo">-->
+<!--        <p v-show="active"><img src="img_1.png" alt="loading"></p>-->
+<!--        <div @mouseover="mouseOver"><img src="img.png" alt="loading"></div>-->
+<!--    </div>-->
+
+<!--    <script>-->
+<!--        var demo = new Vue({-->
+<!--            el: '#demo',-->
+<!--            data: {-->
+<!--                active: false-->
+<!--            },-->
+<!--            methods: {-->
+<!--                mouseOver: function(){-->
+<!--                    this.active = !this.active;-->
+<!--                    document.getElementById("img").style.visibility = 'hidden';-->
+<!--                }-->
+<!--            }-->
+<!--        });-->
+<!--    </script>-->
+
+<!--    <div id = "demo2">-->
+<!--        <ul>-->
+<!--            <li>-->
+<!--                <a href="" @mouseenter="showActive(1)" @mouseleave="showActive(0)">-->
+<!--                    <img src="img_3.png" alt="学习">-->
+<!--                    <img v-show="active === 1" class="hide_tab" src="img_2.png" alt="学习">-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="" @mouseenter="showActive(2)" @mouseleave="showActive(0)">-->
+<!--                    <img src="img_2.png" alt="生活">-->
+<!--                    <img v-show="active === 2" class="hide_tab" src="img_1.png" alt="生活">-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="" @mouseenter="showActive(3)" @mouseleave="showActive(0)">-->
+<!--                    <img src="img_1.png" alt="运动">-->
+<!--                    <img v-show="active === 3" class="hide_tab" src="img_2.png" alt="运动">-->
+<!--                </a>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <a href="" @mouseenter="showActive(4)" @mouseleave="showActive(0)">-->
+<!--                    <img src="img.png" alt="服饰">-->
+<!--                    <img v-show="active === 4" class="hide_tab" src="img_3.png" alt="服饰">-->
+<!--                </a>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </div>-->
+
+<!--    <script>-->
+<!--        new Vue({-->
+<!--            el: '#demo2',-->
+<!--            data(){-->
+<!--                return{-->
+<!--                    active: 0-->
+<!--                }-->
+<!--            },-->
+<!--            methods: {-->
+<!--                showActive(index) {-->
+<!--                    this.active = index;-->
+<!--                }-->
+
+<!--            },-->
+<!--        })-->
+<!--    </script>-->
+    <h1>Welcome!</h1>
+<!--using v-show, mouseenter, mouseleave to show the image -->
+    <div id="img1">
+                <a href="" @mouseenter="show(4)" @mouseleave="show(0)">
+                    <img v-show="active ===0" src="img_3.png" alt="pets" >
+                    <img v-show="active === 4" class="hide_tab" src="img_2.png" alt="pets">
+                </a>
+    </div>
+<!--using v-on to create the click button-->
+    <div id="clickevent">
+        <button v-on:click="counter += 1">Like</button>
+        <p> + {{ counter }} like </p>
+    </div>
+
+    <!--create new vue, need v-if condition to change the status of image-->
+    <script>
+        new Vue ({
+            el: '#img1',
+            data() {
+                return {
+                    active: 0,
+                    // visible: true,
+                };
+            },
+
+            methods: {
+                show(index) {
+                    if (index !== 0) {
+                        // this.visible = false;
+                        this.active = index;
+                    } else {
+                        // this.visible = true;
+                        this.active = index;
+                    }
+                },
+            }
+        })
+        new Vue ({
+            el: '#clickevent',
+            data() {
+                return {
+                    counter: 0
+                }
+            }
+        })
+    </script>
+
+    <div id="img2">
+        <a href="" @mouseenter="show(4)" @mouseleave="show(0)">
+            <img v-show="active ===0" src="img_2.png" alt="pets" >
+            <img v-show="active === 4" class="hide_tab" src="img_1.png" alt="pets">
+        </a>
+    </div>
+    <div id="clickevent2">
+        <button v-on:click="counter += 1">Like</button>
+        <p> + {{ counter }} like </p>
+    </div>
+    <!--create new vue, need v-if condition to change the status of image-->
+    <script>
+        new Vue ({
+            el: '#img2',
+            data() {
+                return {
+                    active: 0,
+                    // visible: true,
+                };
+            },
+
+            methods: {
+                show(index) {
+                    if (index !== 0) {
+                        // this.visible = false;
+                        this.active = index;
+                    } else {
+                        // this.visible = true;
+                        this.active = index;
+                    }
+                },
+            }
+        })
+        new Vue ({
+            el: '#clickevent2',
+            data() {
+                return {
+                    counter: 0
+                }
+            }
+        })
+    </script>
+
+    <div id="img3">
+        <a href="" @mouseenter="show(4)" @mouseleave="show(0)">
+            <img v-show="active ===0" src="img_1.png" alt="pets" >
+            <img v-show="active === 4" class="hide_tab" src="img.png" alt="pets">
+        </a>
+    </div>
+    <div id="clickevent3">
+        <button v-on:click="counter += 1">Like</button>
+        <p> + {{ counter }} like </p>
+    </div>
+    <!--create new vue, need v-if condition to change the status of image-->
+    <script>
+        new Vue ({
+            el: '#img3',
+            data() {
+                return {
+                    active: 0,
+                    // visible: true,
+                };
+            },
+
+            methods: {
+                show(index) {
+                    if (index !== 0) {
+                        // this.visible = false;
+                        this.active = index;
+                    } else {
+                        // this.visible = true;
+                        this.active = index;
+                    }
+                },
+            }
+        })
+        new Vue ({
+            el: '#clickevent3',
+            data() {
+                return {
+                    counter: 0
+                }
+            }
+        })
+    </script>
+
+    <div id="img4">
+        <a href="" @mouseenter="show(4)" @mouseleave="show(0)">
+            <img v-show="active ===0" src="img.png" alt="pets" >
+            <img v-show="active === 4" class="hide_tab" src="img_4.png" alt="pets">
+        </a>
+    </div>
+    <div id="clickevent4">
+        <button v-on:click="counter += 1">Like</button>
+        <p> + {{ counter }} like </p>
+    </div>
+    <!--create new vue, need v-if condition to change the status of image-->
+    <script>
+        new Vue ({
+            el: '#img4',
+            data() {
+                return {
+                    active: 0,
+                    // visible: true,
+                };
+            },
+
+            methods: {
+                show(index) {
+                    if (index !== 0) {
+                        // this.visible = false;
+                        this.active = index;
+                    } else {
+                        // this.visible = true;
+                        this.active = index;
+                    }
+                },
+            }
+        })
+        new Vue ({
+            el: '#clickevent4',
+            data() {
+                return {
+                    counter: 0
+                }
+            }
+        })
+    </script>
+
+<!--using v-for and v-model to write the select -->
+    <div id="v-model-select-dynamic" class="input">
+        <p>Please choose your favourite image!</p>
+        <select v-model="selected">
+            <option v-for="option in options" v-bind:value="option.value">
+                {{ option.text }}
+            </option>
+        </select>
+        <span>{{ selected }}</span>
+    </div>
+    <script>
+        new Vue ({
+            el: '#v-model-select-dynamic',
+            data() {
+                return {
+                    selected: '',
+                    options: [
+                        { text: 'First', value: 'cookie is a strong boy' },
+                        { text: 'Second', value: 'Cookie is looking at you' },
+                        { text: 'Third', value: 'cookie is waiting his dinner' },
+                        { text: 'Fourth', value: 'wow you like puppy' }
+                    ]
+                }
+            }
+        })
+    </script>
+
+    <footer>Thank you reviewing my page!</footer>
+
+</body>
+</html>
