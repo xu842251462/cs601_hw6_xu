@@ -6,7 +6,6 @@
     <meta name="author" content="Bin Xu">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vue: show/hide</title>
-
     <!-- This is a development version of Vue.js! -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <!-- Google fonts -->
@@ -20,7 +19,7 @@
             margin-right: auto;
             color: rgb(255, 102, 0);
             font-family: arial,serif;
-            background: lightblue url("background.png");
+            background: lightblue url("src/background.png");
         }
         img {
             width: 28%;
@@ -51,7 +50,6 @@
             user-select: none;
             overflow-x: auto;
         }
-
     </style>
 </head>
 
@@ -60,8 +58,8 @@
 <!--using v-show, mouseenter, mouseleave to show the image -->
     <div id="img1">
                 <a href="" @mouseenter="show(4)" @mouseleave="show(0)">
-                    <img v-show="active ===0" src="img_3.png" alt="pets" >
-                    <img v-show="active === 4" class="hide_tab" src="img_4.png" alt="pets">
+                    <img v-show="active ===0" src="src/img_3.png" alt="pets" >
+                    <img v-show="active === 4" class="hide_tab" src="src/img_4.png" alt="pets">
                 </a>
     </div>
 <!--using v-on to create the click button-->
@@ -105,8 +103,8 @@
 
     <div id="img2">
         <a href="" @mouseenter="show(4)" @mouseleave="show(0)">
-            <img v-show="active ===0" src="img_2.png" alt="pets" >
-            <img v-show="active === 4" class="hide_tab" src="img_1.png" alt="pets">
+            <img v-show="active ===0" src="src/img_2.png" alt="pets" >
+            <img v-show="active === 4" class="hide_tab" src="src/img_1.png" alt="pets">
         </a>
     </div>
     <div id="clickevent2">
@@ -148,8 +146,8 @@
 
     <div id="img3">
         <a href="" @mouseenter="show(4)" @mouseleave="show(0)">
-            <img v-show="active ===0" src="img_5.png" alt="pets" >
-            <img v-show="active === 4" class="hide_tab" src="img.png" alt="pets">
+            <img v-show="active ===0" src="src/img_5.png" alt="pets" >
+            <img v-show="active === 4" class="hide_tab" src="src/img.png" alt="pets">
         </a>
     </div>
     <div id="clickevent3">
@@ -191,8 +189,8 @@
 
     <div id="img4">
         <a href="" @mouseenter="show(4)" @mouseleave="show(0)">
-            <img v-show="active ===0" src="img_7.png" alt="pets" >
-            <img v-show="active === 4" class="hide_tab" src="img_6.png" alt="pets">
+            <img v-show="active ===0" src="src/img_7.png" alt="pets" >
+            <img v-show="active === 4" class="hide_tab" src="src/img_6.png" alt="pets">
         </a>
     </div>
     <div id="clickevent4">
